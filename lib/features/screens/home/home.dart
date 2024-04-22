@@ -1,11 +1,12 @@
 import 'dart:math';
 
+import 'package:e_com_app/bloc/Categories/categories_bloc.dart';
 import 'package:e_com_app/bloc/products/product_bloc.dart';
 import 'package:e_com_app/repos/models/products_model.dart';
 import 'package:e_com_app/resources/customcard.dart';
 import 'package:e_com_app/resources/maths.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/physics.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,9 +18,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final ProductBloc _productBloc = ProductBloc();
+  final CategoriesBloc _categoriesBloc = CategoriesBloc();
 
   @override
   void initState() {
+    _categoriesBloc.add(LoadCategoryEvent());
     _productBloc.add(LoadProductsEvent());
     super.initState();
   }
@@ -27,10 +30,26 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('hey'),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            title: Text('Hellow!'),
+          ),
+          SliverToBoxAdapter(
+            child: Card(
+              child: Text('Hellow'),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Column(children: [
+              Container(height: 670, child: buildBloc()),
+              SizedBox(
+                height: 16,
+              )
+            ]),
+          )
+        ],
       ),
-      body: buildBloc(),
     );
   }
 

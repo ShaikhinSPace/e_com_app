@@ -19,7 +19,7 @@ class ProductLoading extends ProductState {
 
 class ProductError extends ProductState {
   final String error;
-  ProductError(this.error);
+  const ProductError(this.error);
 
   @override
   List<Object?> get props => [error];

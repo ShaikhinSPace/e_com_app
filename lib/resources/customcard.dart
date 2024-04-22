@@ -1,9 +1,5 @@
 import 'package:e_com_app/features/screens/Product/ProductScreen.dart';
-import 'package:e_com_app/resources/maths.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class CustomCard extends StatefulWidget {
   final String name;
@@ -14,31 +10,29 @@ class CustomCard extends StatefulWidget {
   final String image;
   final String rating;
   const CustomCard(
-      {required this.name,
+      {super.key,
+      required this.name,
       required this.discountPercent,
       required this.discountedprice,
       required this.image,
       required this.price,
-      required this.rating})
-      : super();
+      required this.rating});
 
   @override
   State<CustomCard> createState() => _CustomCardState();
 }
 
 class _CustomCardState<T extends CustomCard> extends State<T> {
-  @override
   Widget buildCard() {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ProductScreen()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const ProductScreen()));
       },
       child: buildCardnonTap(),
     );
   }
 
-  @override
   Widget buildCardnonTap() {
     return Card(
       surfaceTintColor: Colors.blueGrey,
@@ -80,11 +74,12 @@ class _CustomCardState<T extends CustomCard> extends State<T> {
               children: [
                 Text(
                   "\$ ${widget.discountedprice.toString()}",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20),
                 ),
                 Text(
                   '\$ ${widget.price}',
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.red,
                       fontWeight: FontWeight.w700,
                       decoration: TextDecoration.lineThrough),
@@ -97,7 +92,6 @@ class _CustomCardState<T extends CustomCard> extends State<T> {
     );
   }
 
-  @override
   Widget buildDiscount() {
     return CircleAvatar(
       radius: 20,
@@ -107,7 +101,7 @@ class _CustomCardState<T extends CustomCard> extends State<T> {
         child: Center(
           child: Text(
             '${widget.discountPercent}% off',
-            style: TextStyle(color: Colors.yellow, fontSize: 10),
+            style: const TextStyle(color: Colors.yellow, fontSize: 10),
           ),
         ),
       ),
