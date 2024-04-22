@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:e_com_app/constants/Appassets.dart';
-import 'package:e_com_app/constants/appfont.dart';
-import 'package:e_com_app/features/home/home.dart';
+import 'package:e_com_app/config/theme.dart';
+
+import 'package:e_com_app/features/screens/home/home.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(Duration(seconds: 5), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => MainScreen()));
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
     });
   }
 
@@ -30,7 +30,6 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Center(
         child: Text(
           'e - COM App',
-          style: CustomTextStyle.heading1,
         ),
       )),
     );
